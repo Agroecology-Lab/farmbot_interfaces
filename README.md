@@ -51,6 +51,38 @@ Before installing the `farmbot_interfaces` package, ensure the following:
    source install/setup.bash
    ```
 
+## Message types   
+
+The `farmbot_interfaces` package defines several custom ROS2 message types that facilitate communication between ROS2 nodes and FarmBot hardware. Here are the primary message types and their functions:
+
+1. **AxisState.msg**:
+   - **Purpose**: Represents the state of a FarmBot axis (X, Y, or Z).
+   - **Fields**:
+     - `position` (float64): Current position of the axis.
+     - `velocity` (float64): Current velocity of the axis.
+     - `effort` (float64): Current effort or force applied by the axis.
+
+2. **MoveCommand.msg**:
+   - **Purpose**: Commands the FarmBot to move to a specified position.
+   - **Fields**:
+     - `target_position` (geometry_msgs/Point): Desired position in 3D space.
+     - `speed` (float64): Speed at which to execute the move.
+
+3. **ToolCommand.msg**:
+   - **Purpose**: Sends commands to control FarmBot tools (e.g., watering nozzle, seed injector).
+   - **Fields**:
+     - `tool_id` (string): Identifier for the specific tool.
+     - `action` (string): Action to perform (e.g., "activate", "deactivate").
+
+4. **ToolState.msg**:
+   - **Purpose**: Reports the current state of a FarmBot tool.
+   - **Fields**:
+     - `tool_id` (string): Identifier for the specific tool.
+     - `is_active` (bool): Indicates whether the tool is currently active.
+
+These message types enable standardized communication for controlling and monitoring FarmBot operations within a ROS2 framework. For detailed definitions and additional message types, refer to the [farmbot_interfaces GitHub repository](https://github.com/Agroecology-Lab/farmbot_interfaces). 
+   
+
 ## Usage
 
 With the `farmbot_interfaces` package installed and sourced, you can develop ROS2 nodes that publish, subscribe, and interact using the defined messages and services. This standardization ensures compatibility and streamlined communication within the FarmBot ROS2 ecosystem.
